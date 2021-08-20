@@ -50,7 +50,8 @@ function RegisterForm( {onSubmit} ) {
                 return value.split(' ').length >= 2;
               }),
     email: yup
-            .string().required('Please enter email') 
+            .string()
+            .required('Please enter email') 
             .email('Please enter a valid email'),    
     password: yup
               .string()
