@@ -8,7 +8,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({
   error: {
