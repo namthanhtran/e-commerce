@@ -1,4 +1,4 @@
-import { FormHelperText } from '@material-ui/core';
+import { FormHelperText, makeStyles } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -8,8 +8,13 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
+const useStyles = makeStyles((theme) => ({
+  error: {
+    color: 'red'
+  }
+}))
 
 PasswordField.propTypes = {
   form: PropTypes.object.isRequired,
@@ -20,8 +25,9 @@ PasswordField.propTypes = {
 };
 
 function PasswordField(props) {
+  const classes = useStyles();
   const { form, name, label, disable } = props;
-  const { control } = form;
+  const { control, formState: {errors} } = form;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -63,10 +69,10 @@ function PasswordField(props) {
                 onChange={onChange}
                 onBlur={onBlur}
                 disabled={disable}
-                
               />
             )}
           />
+          <FormHelperText className={classes.error}>{errors[name]?.message}</FormHelperText>
       </FormControl>
     </>
   );
