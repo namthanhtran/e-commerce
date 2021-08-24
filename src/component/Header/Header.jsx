@@ -57,9 +57,8 @@ function Header(props) {
               aria-labelledby="form-dialog-title"
               disableEscapeKeyDown
               disableBackdropClick >
-          <DialogTitle id="form-dialog-title">Register</DialogTitle>
           <DialogContent>
-            <Register />
+            <Register closeDialog={handleClose} />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">

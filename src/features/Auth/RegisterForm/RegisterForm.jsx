@@ -1,12 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
+import InputField from 'component/FormControls/InputField/InputField';
+import PasswordField from 'component/FormControls/PasswordField/PasswordField';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import InputField from '../../../component/FormControls/InputField/InputField';
-import PasswordField from '../../../component/FormControls/PasswordField/PasswordField'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -72,10 +72,13 @@ function RegisterForm( {onSubmit} ) {
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (values) => {
+  
+  const handleSubmit = async(values) => {
     if(onSubmit){
       await onSubmit(values);
     }
+
+    form.reset();
   }
   
   const { isSubmitting } = form.formState;
