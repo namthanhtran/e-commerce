@@ -1,3 +1,4 @@
+import ProductFeature from 'features/Products';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -11,6 +12,7 @@ function App() {
       
       <Switch>
         <Redirect from="/home" to="/" exact/>
+        <Route path="/products" component={ProductFeature}/>
         <Route component={NotFound} />
       </Switch>
     </div>
