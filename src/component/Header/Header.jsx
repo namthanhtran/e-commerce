@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Register from '../../features/Auth/Register/Register';
 import Fade from '@material-ui/core/Fade';
 import { logout } from 'features/Auth/userSlice';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(1),
     right: theme.spacing(1),
     zIndex: '1'
+  },
+  navLink: {
+    color: '#fff',
+    textDecoration: 'none'
   }
 }));
 
@@ -76,12 +81,19 @@ function Header(props) {
 
   return (
     <div>
+      {/* Header */}
       <AppBar position="static">
         <Toolbar>
           
           <Typography variant="h6" className={classes.title}>
             E-Commerce
           </Typography>
+
+          <Button>
+            <NavLink to="/products" className={classes.navLink}>
+              Product
+            </NavLink>
+          </Button>
 
           {!isLoggedIn && (
             <Button color="inherit" onClick={handleClickOpen}>Login</Button>
@@ -94,6 +106,7 @@ function Header(props) {
         </Toolbar>
       </AppBar>
 
+      {/* Show options of login/register */}
       <Menu
         keepMounted
         anchorEl={anchorEl}
@@ -115,12 +128,11 @@ function Header(props) {
       </Menu>
 
       
-
+      {/* Show form login/register */}
       <Dialog open={open} 
               onClose={handleClose} 
               aria-labelledby="form-dialog-title"
-              disableEscapeKeyDown
-              disableBackdropClick >
+              disableEscapeKeyDown >
                 
           <IconButton className={classes.closeBtn} onClick={handleClose}>
             <Close />
