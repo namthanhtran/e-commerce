@@ -17,10 +17,8 @@ const useStyles = makeStyles(theme => ({
     listStyleType: 'none',
     '&>li': {
       marginTop: theme.spacing(1),
-      textTransform: 'uppercase',
       transition: 'all ease 0.3s',
       fontSize: '16px',
-      fontWeight: '500',
       '&:hover':{
         cursor: 'pointer',
         color: theme.palette.primary.main,
