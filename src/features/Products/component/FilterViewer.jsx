@@ -7,10 +7,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexFlow: 'row wrap',
     alignItems: 'center',
-    margin: theme.spacing(2, 1),
+    margin: theme.spacing(1, 1),
     listStyle: 'none',
     '& > li': {
-      margin: 0,
+      margin: theme.spacing(0, 0.5),
       pading: theme.spacing(2),
     }
   }
@@ -48,11 +48,25 @@ const FILTER_LIST = [
     onRemove: (filters) => {
       const newFilters = {...filters};
       delete newFilters.isPromotion;
-      // newFilters.isPromotion = false;
       return newFilters;
     },
     onToggle: () => {},
-  }
+  },
+  {
+    id: 3,
+    getLabel: (filters) => `Từ ${Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(filters.salePrice_gte)} 
+                            đến ${Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(filters.salePrice_lte)}`,
+    isActive: () => true,
+    isVisible: (filters) => Object.keys(filters).includes('salePrice_gte') && Object.keys(filters).includes('salePrice_lte'),
+    isRemoveAble: true,
+    onRemove: (filters) => {
+      const newFilters = {...filters};
+      delete newFilters.salePrice_gte;
+      delete newFilters.salePrice_lte;
+      return newFilters;
+    },
+    onToggle: () => {},
+  },
 ]
 
 function FilterViewer(props) {
