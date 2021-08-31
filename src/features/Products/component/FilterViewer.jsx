@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, Chip, makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 FilterViewer.propTypes = {
-  filters: PropTypes.object.isRequired,
+  filters: PropTypes.object,
   onChange: PropTypes.func,
 };
 
@@ -25,21 +25,34 @@ const FILTER_LIST = [
   {
     id: 1,
     getLabel: () => 'Giao hàng miễn phí',
-    isActive: (filters) => Boolean(filters.isFreeShip),
+    isActive: (filters) => filters.isFreeShip,
     isVisible: () => true,
-    isRemoveable: false,
+    isRemoveAble: false,
     onRemove: () => {},
     onToggle: (filters) => {
-      const newFilters = {...filters};
+      const newFilters = {...filters };
       if(newFilters.isFreeShip){
-        // newFilters.isFreeShip = false;
         delete newFilters.isFreeShip;
       }else{
         newFilters.isFreeShip = true;
       }
       return newFilters;
-    }
+    },
   },
+  {
+    id: 2,
+    getLabel: () => 'Khuyến mãi',
+    isActive: () => true,
+    isVisible: (filters) => filters.isPromotion,
+    isRemoveAble: true,
+    onRemove: (filters) => {
+      const newFilters = {...filters};
+      delete newFilters.isPromotion;
+      // newFilters.isPromotion = false;
+      return newFilters;
+    },
+    onToggle: () => {},
+  }
 ]
 
 function FilterViewer(props) {
@@ -47,18 +60,30 @@ function FilterViewer(props) {
   const { filters = {}, onChange = null } = props;
   return (
     <Box className={classes.root}>
-      {FILTER_LIST.filter(x => x.isVisible(filters)).map(x => (
+      {FILTER_LIST.filter((x) => (x.isVisible(filters))).map((x) => (
         <li key={x.id}>
-          <Chip label={x.getLabel(filters)}
-                color={x.isActive(filters) ? "primary" : "default"}
-                clickable={!x.isRemoveable}
-                onClick={x.isRemoveable 
-                          ? null 
-                          : () => {
-                            if(!onChange) return;
-                            const newFilters = x.onToggle(filters);
-                            onChange(newFilters)
-                          }}
+          <Chip
+            label={x.getLabel(filters)}
+            color={x.isActive(filters) ? 'primary' : 'default'}
+            clickable={!x.isRemoveAble}
+            onClick={
+              x.isRemoveAble
+              ? null
+              : () => {
+                if(!onChange) return;
+                const newFilters = x.onToggle(filters);
+                onChange(newFilters);
+              }
+            }
+            onDelete={
+              x.isRemoveAble
+              ? () => {
+                if(!onChange) return;
+                const newFilters = x.onRemove(filters);
+                onChange(newFilters);
+              } 
+              : null
+            }
           />
         </li>
       ))}
