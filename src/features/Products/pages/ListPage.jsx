@@ -1,16 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Box, Container, Grid, Paper, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import productApi from 'api/productApi';
-import ProductSkeleton from '../component/ProductSkeleton';
-import ProductList from '../component/ProductList';
+import { Box, Container, Grid, makeStyles, Paper } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import ProductSort from '../component/ProductSort';
-import ProductFilters from '../component/ProductFilters';
+import productApi from 'api/productApi';
+import React, { useEffect, useState } from 'react';
 import FilterViewer from '../component/FilterViewer';
+import ProductFilters from '../component/ProductFilters';
+import ProductList from '../component/ProductList';
+import ProductSkeleton from '../component/ProductSkeleton';
+import ProductSort from '../component/ProductSort';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +35,7 @@ ListPage.propTypes = {
 function ListPage(props) {
   const classes = useStyles();
   const [productList, setProductList] = useState([]);
-  const {loading, setLoading} = useState(true);
+  const {loading, setLoading} = useState(false);
   const [filters, setFilters] = useState({
     _page: 1,
     _limit: 12,
@@ -61,7 +57,6 @@ function ListPage(props) {
       } catch (error) {
         console.log('Failed to fetch data', error);
       }
-
     })();
   }, [filters]);
 
@@ -106,7 +101,9 @@ function ListPage(props) {
             <Paper elevation={0} variant='outlined' square >
               {/* Box sort value */}
               <Box>
-                <ProductSort currentValue={filters._sort} onChange={handleSortChange}/>
+                <Paper elevation={0} variant='outlined' square>
+                  <ProductSort currentValue={filters._sort} onChange={handleSortChange}/>
+                </Paper>
               </Box>
               <Box>
                 <FilterViewer filters={filters} onChange={handleSetFilter}/>
