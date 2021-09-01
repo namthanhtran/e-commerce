@@ -40,7 +40,7 @@ function ListPage(props) {
   const history = useHistory();
   const location = useLocation();
   const queryParams = useMemo(() => { 
-    const params =  queryString.parse(location.search);  //parse from URL search to Object assign params
+    const params =  queryString.parse(location.search);  //parse from URL search to Object assign in params
     return {
       ...params, // get all old properties in params
       _page: Number.parseInt(params._page) || 1, // if params is empty, get default values
