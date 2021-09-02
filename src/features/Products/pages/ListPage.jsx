@@ -1,6 +1,7 @@
 import { Box, Container, Grid, makeStyles, Paper } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import productApi from 'api/productApi';
+import queryString from 'query-string';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import FilterViewer from '../component/FilterViewer';
@@ -8,7 +9,6 @@ import ProductFilters from '../component/ProductFilters';
 import ProductList from '../component/ProductList';
 import ProductSkeleton from '../component/ProductSkeleton';
 import ProductSort from '../component/ProductSort';
-import queryString from 'query-string';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,7 +52,7 @@ function ListPage(props) {
   }, [location.search]); //when search URL change, calc again object queryParams
 
   const [productList, setProductList] = useState([]);
-  const [loading, setLoading ] = useState(false);
+  const [loading, setLoading ] = useState(true);
   const [pagination, setPagination] = useState({
     limit: 12,
     total: 10,
@@ -139,14 +139,14 @@ function ListPage(props) {
               <Box>
                 <Paper elevation={0} variant='outlined' square>
                   <ProductSort currentValue={queryParams._sort} onChange={handleSortChange}/>
-                </Paper>
+                </Paper>  
               </Box>
               <Box>
                 <FilterViewer filters={queryParams} onChange={handleSetFilter}/>
               </Box>
               {/* Loading productlist */}
               {loading ? <ProductSkeleton /> : <ProductList data={productList}/>}
-
+              {/* <ProductSkeleton /> */}
               {/* Box handle page */}
               <Box>
                 <Pagination className={classes.flexPage} 
