@@ -1,0 +1,112 @@
+.homepage {
+  background-color: #f4f4f4;
+}
+
+.homepage .banner {
+  position: relative;
+  width: 100%;
+  height: 650px;
+}
+
+.homepage .banner .btn-over a {
+  border: 1px solid #fff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.homepage .banner .btn-over a:hover {
+  background-color: #3f51b5;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.homepage .banner__text {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.homepage .banner__text h1 {
+  text-transform: uppercase;
+  font-style: italic;
+  -webkit-box-shadow: 20px 20px 20px 0;
+          box-shadow: 20px 20px 20px 0;
+  position: relative;
+}
+
+.homepage .banner__text h1::after {
+  content: "";
+  background-color: #fff;
+  width: 650px;
+  height: 2px;
+  position: absolute;
+  top: 75px;
+  left: 50%;
+  right: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.homepage .banner__text p {
+  padding: 20px 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.homepage .banner__img {
+  min-width: 100%;
+  min-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.homepage .banner__img img {
+  width: 100%;
+  height: 100%;
+}
+
+.homepage .introduce {
+  margin: 0;
+  padding: 0 100px;
+}
+
+.homepage .introduce h2 {
+  text-transform: uppercase;
+}
+
+.homepage .introduce p {
+  padding-left: 0 !important;
+  color: #000;
+}
+/*# sourceMappingURL=style.css.map */

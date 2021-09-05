@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
+import Fade from '@material-ui/core/Fade';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,16 +11,16 @@ import Typography from '@material-ui/core/Typography';
 import { Close } from '@material-ui/icons';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Login from 'features/Auth/Login/Login';
+import { logout } from 'features/Auth/userSlice';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Register from '../../features/Auth/Register/Register';
-import Fade from '@material-ui/core/Fade';
-import { logout } from 'features/Auth/userSlice';
 import { NavLink } from 'react-router-dom';
+import Register from '../../features/Auth/Register/Register';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    margin: 0,
+    padding: '0 100px',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -82,11 +83,11 @@ function Header(props) {
   return (
     <div>
       {/* Header */}
-      <AppBar position="static">
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
           
           <Typography variant="h6" className={classes.title}>
-            E-Commerce
+            <NavLink to="/home" className={classes.navLink}>E-Commerce</NavLink>
           </Typography>
 
           <Button>
