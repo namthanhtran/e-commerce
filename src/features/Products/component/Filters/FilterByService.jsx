@@ -1,4 +1,5 @@
-import { Box, Checkbox, makeStyles, FormControlLabel, Typography } from '@material-ui/core';
+import { Box, FormControlLabel, makeStyles, Typography } from '@material-ui/core';
+import Checkbox from '@material-ui/core/Checkbox';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -22,13 +23,13 @@ FilterByService.propTypes = {
 
 function FilterByService(props) {
   const classes = useStyles();
-  const {filters = {}, onChange} = props;
+  const {filters = {}, onChange = null} = props;
 
   const handleChange = (e) => {
-    if(!onChange) return;
-
     const { name, checked } = e.target;
-    if(onChange) onChange({[name]: checked});
+    if(onChange){
+      onChange({[name]: checked});
+    }
   }
 
   return (
@@ -36,16 +37,16 @@ function FilterByService(props) {
       <Typography component='span' className={classes.textTitle}>Dịch vụ</Typography>
 
       <ul className={classes.menu}>
-        {[{label: 'Giao hàng miễn phí', value: 'isFreeShip'}, {label: 'Giảm giá', value: 'isPromotion'}].map((service) => (
+        {[{label: 'Giao hàng miễn phí', value: 'isFreeShip'}, {label: 'Khuyến mãi', value: 'isPromotion'}].map((service) => (
           <li key={service.value}>
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={filters[service.value]}
+                  checked={Boolean(filters[service.value])}
                   onChange={handleChange}
                   name={service.value}
                   color="primary"
-                />
+                />  
               }
               label={service.label}
             />

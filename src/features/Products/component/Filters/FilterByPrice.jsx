@@ -40,7 +40,7 @@ function FilterByPrice({onChange}) {
   });
 
   const handleSubmitPrice = () => {
-    console.log(values);
+    // console.log(values);
     if(onChange) onChange(values);
 
     // reset values = 0
