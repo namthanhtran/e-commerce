@@ -12,7 +12,7 @@ function ProductThumbnail({product = {}}) {
   const thumbnail_URL = product.thumbnail ? `${STATIC_HOST}${product.thumbnail?.url}` : `${THUMBNAIL_PLACEHOLDER}`; 
   return (
     <Box>
-      <img src={thumbnail_URL} alt="" />
+      <img src={thumbnail_URL} alt="" width="100%"/>
     </Box>
   );
 }
