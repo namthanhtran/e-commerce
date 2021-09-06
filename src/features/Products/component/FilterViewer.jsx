@@ -67,6 +67,28 @@ const FILTER_LIST = [
     },
     onToggle: () => {},
   },
+  {
+    id: 4,
+    getLabel: () => 'Xóa tất cả',
+    isActive: (filters) => Object.keys(filters).includes('salePrice_gte') ||
+                            Object.keys(filters).includes('salePrice_lte') || 
+                            filters.isPromotion || 
+                            filters.isFreeShip,
+    isVisible: (filters) => Object.keys(filters).includes('salePrice_gte') || 
+                            Object.keys(filters).includes('salePrice_lte') || 
+                            filters.isPromotion || 
+                            filters.isFreeShip,
+    isRemoveAble: true,
+    onRemove: (filters) => {
+      const newFilters = {...filters};
+      delete newFilters.isFreeShip;
+      delete newFilters.isPromotion;
+      delete newFilters.salePrice_gte;
+      delete newFilters.salePrice_lte;
+      return newFilters;
+    },
+    onToggle: () => {},
+  },
 ]
 
 function FilterViewer(props) {
