@@ -7,12 +7,8 @@ ProductSkeleton.propTypes = {
   length: PropTypes.number,
 };
 
-ProductSkeleton.defaultProps = {
-  length: 6,
-}
-
 function ProductSkeleton(props) {
-  const {length} = props;
+  const { length = 12 } = props;
   return (
     <Box>
       <Grid container>
