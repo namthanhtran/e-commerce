@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Container, Grid, makeStyles, Paper } from '@material-ui/core';
+import { Box, Container, Grid, LinearProgress, makeStyles, Paper } from '@material-ui/core';
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import AddToCartForm from '../component/AddToCartForm';
@@ -33,10 +33,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   loading:{
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
   }
 }))
 
@@ -52,7 +52,9 @@ function DetailPage(props) {
 
   if(loading) {
     return(
-      <CircularProgress className={classes.loading}/>
+      <Box className={classes.loading}  >
+      <LinearProgress/>
+      </Box>
     )
   }
 
