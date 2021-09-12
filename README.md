@@ -17,3 +17,7 @@ using useLocation to parse location search -> object to assign Object Filters
 
 <!-- Render Product Description -->
 using DOMpurify to security
+
+<!-- Cart -->
+- showMiniCart (true/false)
+- page cartItems -> item(product, quantity, price)
