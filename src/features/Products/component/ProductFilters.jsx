@@ -10,13 +10,14 @@ ProductFilters.propTypes = {
   onChange: PropTypes.func,
 };
 
-function ProductFilters({filters, onChange}) {
+function ProductFilters(props) {
+  const { filters = {}, onChange = null } = props;
 
   const handleCategoryChange = (newCategoryid) => {
     if(!onChange) return;
 
     const newFilters = {
-      // ...filters,
+      ...filters,
       'category.id': newCategoryid,
     }
     onChange(newFilters);
@@ -32,7 +33,7 @@ function ProductFilters({filters, onChange}) {
         <FilterByCategory onChange={handleCategoryChange} />
       </Paper>
       <Paper elevation={0} variant='outlined' square>
-        <FilterByPrice onChange={handleChange} />
+        <FilterByPrice filters={filters} onChange={handleChange} />
       </Paper>
       <Paper elevation={0} variant='outlined' square>
         <FilterByService filters={filters} onChange={handleChange} />

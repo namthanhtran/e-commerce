@@ -7,7 +7,7 @@ DetailDescription.propTypes = {
   product: PropTypes.object,
 };
 
-function DetailDescription({ product }) {
+function DetailDescription({ product = {} }) {
   const safeDescription = DOMPurify.sanitize(product.description);
   return (
     <Paper dangerouslySetInnerHTML={{__html: safeDescription}} elevation={0} style={{padding: '20px'}}/>

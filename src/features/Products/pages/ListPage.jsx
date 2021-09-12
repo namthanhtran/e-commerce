@@ -35,7 +35,7 @@ ListPage.propTypes = {
 };
 
 function ListPage(props) {
-  const classes = useStyles();
+  const classes = useStyles();  
 
   const history = useHistory();
   const location = useLocation();
