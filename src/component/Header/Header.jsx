@@ -1,4 +1,4 @@
-import { Box, IconButton, makeStyles } from '@material-ui/core';
+import { Badge, Box, IconButton, makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,13 +8,14 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Close } from '@material-ui/icons';
+import { Close, ShoppingCart } from '@material-ui/icons';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Login from 'features/Auth/Login/Login';
 import { logout } from 'features/Auth/userSlice';
+import { cartItemCountSelector } from 'features/Cart/selector';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Register from '../../features/Auth/Register/Register';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,6 +58,8 @@ function Header(props) {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState(MODE.LOGIN);
   const [anchorEl, setAnchorEl] = useState(null);
+  const history = useHistory();
+  const cartItemCounts = useSelector(cartItemCountSelector);
 
 
   const handleClickOpen = () => {
@@ -80,6 +83,10 @@ function Header(props) {
     setAnchorEl(null);
   }
 
+  const handleCartClick = () => {
+    history.push("/cart");
+  }
+
   return (
     <div>
       {/* Header */}
@@ -95,6 +102,12 @@ function Header(props) {
               Product
             </NavLink>
           </Button>
+
+          <IconButton aria-label="show cart item" color="inherit" onClick={handleCartClick}>
+            <Badge badgeContent={cartItemCounts} color="secondary">
+              <ShoppingCart />
+            </Badge>
+          </IconButton>
 
           {!isLoggedIn && (
             <Button color="inherit" onClick={handleClickOpen}>Login</Button>
