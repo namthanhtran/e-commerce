@@ -2,7 +2,7 @@ import { Box, Container, Grid, makeStyles, Paper, Typography } from '@material-u
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { formatPrice } from 'utils';
-import ListCartItem from './component/ListCartItem';
+import ListCartItem from './ListCartItem';
 import { cartItemCountSelector, cartTotalSelector } from './selector';
 
 const useStyles = makeStyles((theme) => ({

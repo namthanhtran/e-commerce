@@ -7,14 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { formatPrice } from 'utils';
 import * as yup from 'yup';
-import { removeCartItem } from '../cartSlice';
+import { removeCartItem } from './cartSlice';
 
 const useStyles = makeStyles( theme => ({
   root: '',
   flexItem: {
     width: '100%',
     display: 'flex',
-    justifyContent: 'space-evenly',
   },
   img: {
     width: '100px',
@@ -24,6 +23,7 @@ const useStyles = makeStyles( theme => ({
     border: '1px solid #000'
   },
   boxText: {
+    width: '150px',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -42,9 +42,11 @@ const useStyles = makeStyles( theme => ({
     margin: theme.spacing(0, 1)
   },
   quantity: {
+    width: '100px',
     margin: theme.spacing(0, 2),
   },
   price: {
+    width: '150px',
     margin: theme.spacing(0, 2),
     fontSize: '18px',
     fontWeight: 'semi-bold',
