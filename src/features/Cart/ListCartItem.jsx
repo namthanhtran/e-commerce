@@ -43,7 +43,7 @@ const useStyles = makeStyles( theme => ({
   },
   quantity: {
     width: '100px',
-    margin: theme.spacing(0, 2),
+    margin: theme.spacing(0, 2)
   },
   price: {
     width: '150px',
