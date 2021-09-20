@@ -18,7 +18,7 @@ function ProductFilters(props) {
 
     const newFilters = {
       ...filters,
-      'category.id': newCategoryid,
+      'category.name': newCategoryid,
     }
     onChange(newFilters);
   };

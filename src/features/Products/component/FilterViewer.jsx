@@ -69,13 +69,28 @@ const FILTER_LIST = [
   },
   {
     id: 4,
+    getLabel: (filters) => filters['category.name'],
+    isActive: (filters) => Object.keys(filters).includes('category.name'),
+    isVisible: (filters) => Object.keys(filters).includes('category.name'),
+    isRemoveAble: true,
+    onRemove: (filters) => {
+      const newFilters = {...filters};
+      delete newFilters['category.name'];
+      return newFilters;
+    },
+    onToggle: () => {},
+  },
+  {
+    id: 5,
     getLabel: () => 'Xóa tất cả',
     isActive: (filters) => Object.keys(filters).includes('salePrice_gte') ||
                             Object.keys(filters).includes('salePrice_lte') || 
+                            Object.keys(filters).includes('category.name') ||
                             filters.isPromotion || 
                             filters.isFreeShip,
     isVisible: (filters) => Object.keys(filters).includes('salePrice_gte') || 
                             Object.keys(filters).includes('salePrice_lte') || 
+                            Object.keys(filters).includes('category.name') ||
                             filters.isPromotion || 
                             filters.isFreeShip,
     isRemoveAble: true,
@@ -85,6 +100,7 @@ const FILTER_LIST = [
       delete newFilters.isPromotion;
       delete newFilters.salePrice_gte;
       delete newFilters.salePrice_lte;
+      delete newFilters['category.name'];
       return newFilters;
     },
     onToggle: () => {},
