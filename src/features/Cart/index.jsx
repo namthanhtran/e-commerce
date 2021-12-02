@@ -1,4 +1,4 @@
-import { Box, Container, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Container, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { formatPrice } from 'utils';
@@ -7,19 +7,50 @@ import { cartItemCountSelector, cartTotalSelector } from './selector';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    height: '100%',
+    margin: '50px 0'
+  },
+  title: {
+    margin: '20px auto',
+    textAlign: 'center',
+    width: '100%',
+    textTransform: 'uppercase',
+    fontSize: '22px',
+    color: '#3f51b5',
+  },
+  boxPay: {
+    margin: '20px 0',
+    padding: '10px 20px',
+  },
+  titlePay: {
+    fontSize: '22px',
+    color: '#3f51b5',
+  },
+  moneyBox: {
+    margin: '20px 0',
     display: 'flex',
-    padding: theme.spacing(3),
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  left: {
-    width: '750px',
-    padding: theme.spacing(1.5),
-    border: `1px solid ${theme.palette.grey[300]}`,
+  temporaryMoney: {
+    fontSize: '16px',
+    color: '#878787',
   },
-  right: {
-    flex: '1 1 0',
-    padding: theme.spacing(1.5),
-    marginBottom: theme.spacing(3),
+  payMoney: {
+    fontSize: '22px',
+    color: 'red',
   },
+  btnPay: {
+    width: '100%',
+    height: '50px',
+    display: 'flex',
+    justifyContent:'center',
+    background: '#3f51b5',
+    color: '#fff',
+    '&:hover': {
+      background: '#3f51b5',
+    }
+  }
 }))
 
 CartFeature.propTypes = {
@@ -28,32 +59,28 @@ CartFeature.propTypes = {
 
 function CartFeature(props) {
   const classes = useStyles();
-  const cartItemCounts = useSelector(cartItemCountSelector);
-  const cartItemTotal = useSelector(cartTotalSelector);
-  
+  const cartTotalPrice = useSelector(cartTotalSelector);
+
   return (
     <Box className={classes.root}>
       <Container>
-        GIỎ HÀNG ( {cartItemCounts} sản phẩm)
-        <Paper elevation={0} variant="outlined" square>
-          <Grid container>
-            <Grid item className={classes.left}>
-              <ListCartItem />
-            </Grid>
-            <Grid item className={classes.right}>
-              <Box>
-                <Paper elevation={1} variant="outlined" square>
-                  Địa chỉ giao hàng
-                </Paper>
-              </Box>              
-              <Box>
-                <Paper elevation={1} variant="outlined" square>
-                  <Typography>THANH TOÁN</Typography>
-                  <Typography>Thành tiền: {formatPrice(cartItemTotal)}</Typography>
-                </Paper>
-              </Box>
-            </Grid>
-          </Grid>
+        <Box>
+          <Typography className={classes.title}>giỏ hàng</Typography>
+        </Box>
+        <ListCartItem />
+        <Paper elevation={0} variant="outlined" square className={classes.boxPay}>
+          <Typography className={classes.titlePay}>Thanh toán</Typography>
+          <Box className={classes.moneyBox}>
+            <Typography>Tạm tính</Typography>
+            <Typography className={classes.temporaryMoney}>{formatPrice(cartTotalPrice)}</Typography>
+          </Box>
+          <Box className={classes.moneyBox}>
+            <Typography>Thành tiền</Typography>
+            <Typography className={classes.payMoney}>{formatPrice(cartTotalPrice)}</Typography>
+          </Box>
+          <Box>
+            <Button className={classes.btnPay}>thanh toán</Button>
+          </Box>
         </Paper>
       </Container>
     </Box>
