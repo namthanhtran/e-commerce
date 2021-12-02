@@ -60,6 +60,7 @@ CartFeature.propTypes = {
 function CartFeature(props) {
   const classes = useStyles();
   const cartTotalPrice = useSelector(cartTotalSelector);
+  const cartItemCount = useSelector(cartItemCountSelector);
 
   return (
     <Box className={classes.root}>
@@ -68,20 +69,22 @@ function CartFeature(props) {
           <Typography className={classes.title}>giỏ hàng</Typography>
         </Box>
         <ListCartItem />
-        <Paper elevation={0} variant="outlined" square className={classes.boxPay}>
-          <Typography className={classes.titlePay}>Thanh toán</Typography>
-          <Box className={classes.moneyBox}>
-            <Typography>Tạm tính</Typography>
-            <Typography className={classes.temporaryMoney}>{formatPrice(cartTotalPrice)}</Typography>
-          </Box>
-          <Box className={classes.moneyBox}>
-            <Typography>Thành tiền</Typography>
-            <Typography className={classes.payMoney}>{formatPrice(cartTotalPrice)}</Typography>
-          </Box>
-          <Box>
-            <Button className={classes.btnPay}>thanh toán</Button>
-          </Box>
-        </Paper>
+        {cartItemCount !== 0 && 
+          <Paper elevation={0} variant="outlined" square className={classes.boxPay}>
+            <Typography className={classes.titlePay}>Thanh toán</Typography>
+            <Box className={classes.moneyBox}>
+              <Typography>Tạm tính</Typography>
+              <Typography className={classes.temporaryMoney}>{formatPrice(cartTotalPrice)}</Typography>
+            </Box>
+            <Box className={classes.moneyBox}>
+              <Typography>Thành tiền</Typography>
+              <Typography className={classes.payMoney}>{formatPrice(cartTotalPrice)}</Typography>
+            </Box>
+            <Box>
+              <Button className={classes.btnPay}>thanh toán</Button>
+            </Box>
+          </Paper>
+        }
       </Container>
     </Box>
   );
